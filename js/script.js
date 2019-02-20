@@ -30,7 +30,6 @@ window.addEventListener('DOMContentLoaded', () =>{
 				trigger = item.querySelector('button'),
 				remuveBtn = document.createElement('div'),
 				empty = cartWraper.querySelector('.empty');
-
 			trigger.remove();
 
 			showConfirm();
@@ -44,17 +43,6 @@ window.addEventListener('DOMContentLoaded', () =>{
 			if (empty){
 				empty.style.display = 'none';	
 			}
-			console.log(cartWraper);
-			console.log(cartWraper.length);
-			if (cartWraper.length === undefined) {
-			  empty.style.display = 'none';
-			  console.log('display = "none"');
-			}
-			else{
-			   empty.style.display = 'block';
-			   console.log('display = "block"');
-			}
-
 			calcTotal();
 			removeFromCart();
 		});
@@ -91,6 +79,11 @@ window.addEventListener('DOMContentLoaded', () =>{
 	function calcGoods(i) {
 		const items = cartWraper.querySelectorAll('.goods__item');
 		badge.textContent =  items.length + i;
+		
+		if (items.length == 0) {
+			let empty = cartWraper.querySelector('.empty');
+			empty.style.display = 'block'; 
+		}
 	};
 
 	function calcTotal() {
@@ -109,6 +102,7 @@ window.addEventListener('DOMContentLoaded', () =>{
 				btn.parentElement.remove();
 				calcGoods(0);
 				calcTotal();
+
 			});
 		});
 	};
